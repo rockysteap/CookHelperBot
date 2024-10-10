@@ -1,6 +1,7 @@
 import asyncio
 
 from telebot.async_telebot import AsyncTeleBot
+from datetime import datetime
 
 from django.conf import settings
 
@@ -10,7 +11,7 @@ bot = AsyncTeleBot(settings.TOKEN_BOT, parse_mode='HTML')
 # Handle '/start' and '/help'
 @bot.message_handler(commands=['help', 'start'])
 async def send_welcome(message):
-    text = 'Hello from start and help handler!'
+    text = f"{datetime.now()}\n Hello from '/start' and '/help' handler!"
     await bot.reply_to(message, text)
 
 
@@ -20,4 +21,5 @@ async def echo_message(message):
     await bot.reply_to(message, message.text)
 
 
-asyncio.run(bot.polling())
+if __name__ == '__main__':
+    asyncio.run(bot.polling())

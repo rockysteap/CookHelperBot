@@ -7,4 +7,5 @@ from core.apps.bot.main_bot import bot
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        print('Bot is starting..')
         asyncio.run(bot.polling())
